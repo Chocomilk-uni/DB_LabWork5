@@ -1,14 +1,15 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using ComputingEquipmentDatabaseImplement.Models;
-using System.IO;
+using System.IO; 
 using System.Text;
+
 
 namespace ComputingEquipmentDatabaseImplement.DatabaseContext
 {
     public partial class ComputingEquipmentDatabase : DbContext
     {
-        const string CONFIG_FILE_ADDRESS = "../../../config.txt";
+        const string CONFIG_FILE_ADDRESS = "C:/Users/Chocomilk/source/repos/DB_LabWork5/ComputingEquipment/config.txt";
         public ComputingEquipmentDatabase()
         {
         }
@@ -234,7 +235,7 @@ namespace ComputingEquipmentDatabaseImplement.DatabaseContext
                     throw new Exception("Неверный формат файла конфигурации");
                 }
                 StringBuilder str = new StringBuilder();
-                using (StreamReader sr = new StreamReader(CONFIG_FILE_ADDRESS, Encoding.GetEncoding(1251)))
+                using (StreamReader sr = new StreamReader(CONFIG_FILE_ADDRESS))
                 {
                     string line;
                     while ((line = sr.ReadLine()) != null)

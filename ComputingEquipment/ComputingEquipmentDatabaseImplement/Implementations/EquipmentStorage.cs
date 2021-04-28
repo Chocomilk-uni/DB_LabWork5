@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace ComputingEquipmentDatabaseImplement.Implementations
 {
-    public class EquipmentStoragecs : IEquipmentStorage
+    public class EquipmentStorage : IEquipmentStorage
     {
         public List<EquipmentViewModel> GetFullList()
         {
@@ -27,6 +27,9 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
                         Specifications = rec.Specifications,
                         ReceiptDate = rec.ReceiptDate,
                         State = rec.State,
+                        TypeId = rec.TypeId,
+                        EmployeeId = rec.EmployeeId,
+                        SupplierId = rec.SupplierId,
                         TypeName = rec.Type.Name,
                         EmployeeName = rec.EmployeeId.HasValue ? rec.Employee.Name : string.Empty,
                         SupplierOrganizationName = rec.Supplier.OrganizationName
@@ -55,6 +58,9 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
                         Specifications = rec.Specifications,
                         ReceiptDate = rec.ReceiptDate,
                         State = rec.State,
+                        TypeId = rec.TypeId,
+                        EmployeeId = rec.EmployeeId,
+                        SupplierId = rec.SupplierId,
                         TypeName = rec.Type.Name,
                         EmployeeName = rec.EmployeeId.HasValue ? rec.Employee.Name : string.Empty,
                         SupplierOrganizationName = rec.Supplier.OrganizationName
@@ -84,6 +90,9 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
                     Specifications = equipment.Specifications,
                     ReceiptDate = equipment.ReceiptDate,
                     State = equipment.State,
+                    TypeId = equipment.TypeId,
+                    SupplierId = equipment.SupplierId,
+                    EmployeeId = equipment.EmployeeId,
                     TypeName = equipment.Type.Name,
                     EmployeeName = equipment.EmployeeId.HasValue ? equipment.Employee.Name : string.Empty,
                     SupplierOrganizationName = equipment.Supplier.OrganizationName
@@ -133,7 +142,7 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
             }
         }
 
-        private Equipment CreateModel(EquipmentBindingModel model, Equipment equipment, ComputingEquipmentDatabase context)
+        private Equipment CreateModel(EquipmentBindingModel model, Equipment equipment)
         {
             equipment.Name = model.Name;
             equipment.Specifications = model.Specifications;
@@ -143,65 +152,7 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
             equipment.EmployeeId = model.EmployeeId;
             equipment.SupplierId = model.SupplierId;
 
-            if (equipment.Id == 0)
-            {
-                context.Equipment.Add(equipment);
-                context.SaveChanges();
-            }
-
-            if (model.Id.HasValue)
-            {
-                List<TravelTour> travelTours = context.TravelTours
-                    .Where(rec => rec.TravelID == model.ID.Value).ToList();
-                context.TravelTours.RemoveRange(travelTours
-                    .Where(rec => !model.TravelTours.ContainsKey(rec.TourID)).ToList());
-
-                List<TravelExcursion> travelExcursions = context.TravelExcursions
-                    .Where(rec => rec.TravelID == model.ID.Value).ToList();
-                context.TravelExcursions.RemoveRange(travelExcursions
-                    .Where(rec => !model.TravelExcursions.ContainsKey(rec.ExcursionID)).ToList());
-
-                context.SaveChanges();
-
-                // Убираем повторы
-                foreach (var travelTour in travelTours)
-                {
-                    if (model.TravelTours.ContainsKey(travelTour.TourID))
-                    {
-                        model.TravelTours.Remove(travelTour.TourID);
-                    }
-                }
-
-                foreach (var travelExcursion in travelExcursions)
-                {
-                    if (model.TravelExcursions.ContainsKey(travelExcursion.ExcursionID))
-                    {
-                        model.TravelTours.Remove(travelExcursion.ExcursionID);
-                    }
-                }
-                context.SaveChanges();
-            }
-
-            foreach (var tt in model.TravelTours)
-            {
-                context.TravelTours.Add(new TravelTour
-                {
-                    TravelID = travel.ID,
-                    TourID = tt.Key,
-                });
-                context.SaveChanges();
-            }
-
-            foreach (var te in model.TravelExcursions)
-            {
-                context.TravelExcursions.Add(new TravelExcursion
-                {
-                    TravelID = travel.ID,
-                    ExcursionID = te.Key,
-                });
-                context.SaveChanges();
-            }
-            return travel;
+            return equipment;
         }
     }
 }

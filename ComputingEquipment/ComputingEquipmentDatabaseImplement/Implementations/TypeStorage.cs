@@ -5,11 +5,10 @@ using ComputingEquipmentDatabaseImplement.DatabaseContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ComputingEquipmentDatabaseImplement.Implementations
 {
-    class TypeStorage : ITypeStorage
+    public class TypeStorage : ITypeStorage
     {
         public List<TypeViewModel> GetFullList()
         {
@@ -67,7 +66,7 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
         {
             using (var context = new ComputingEquipmentDatabase())
             {
-                context.Type.Add(CreateModel(model, new Type()));
+                context.Type.Add(CreateModel(model, new Models.Type()));
                 context.SaveChanges();
             }
         }

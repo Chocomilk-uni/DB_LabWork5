@@ -6,7 +6,6 @@ using ComputingEquipmentDatabaseImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ComputingEquipmentDatabaseImplement.Implementations
 {
@@ -40,7 +39,8 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
                     .Select(rec => new SoftwareViewModel
                     {
                         Id = rec.Id,
-                        Name = rec.Name
+                        Name = rec.Name,
+                        License_type = rec.LicenseType
                     }).ToList();
             }
         }
@@ -61,6 +61,7 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
                 {
                     Id = software.Id,
                     Name = software.Name,
+                    License_type = software.LicenseType
                 } : null;
             }
         }
@@ -110,6 +111,8 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
         private Software CreateModel(SoftwareBindingModel model, Software software)
         {
             software.Name = model.Name;
+            software.LicenseType = model.License_type;
+
             return software;
         }
     }

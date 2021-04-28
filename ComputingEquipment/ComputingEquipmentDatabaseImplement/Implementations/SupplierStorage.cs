@@ -6,7 +6,6 @@ using ComputingEquipmentDatabaseImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ComputingEquipmentDatabaseImplement.Implementations
 {
@@ -115,9 +114,12 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
             }
         }
 
-        private Employee CreateModel(SupplierBindingModel model, Supplier supplier)
+        private Supplier CreateModel(SupplierBindingModel model, Supplier supplier)
         {
-            supplier.Or = model.Name;
+            supplier.OrganizationName = model.OrganizationName;
+            supplier.EmployeeName = model.EmployeeName;
+            supplier.Address = model.Address;
+            supplier.PhoneNumber = model.PhoneNumber;
 
             return supplier;
         }

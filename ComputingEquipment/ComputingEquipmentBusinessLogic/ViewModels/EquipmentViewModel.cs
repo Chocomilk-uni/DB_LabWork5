@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace ComputingEquipmentBusinessLogic.ViewModels
@@ -32,6 +31,5 @@ namespace ComputingEquipmentBusinessLogic.ViewModels
         public int TypeId { get; set; }
         public int? EmployeeId { get; set; }
         public int SupplierId { get; set; }
-        public Dictionary<int, string> EquipmentSoftware { get; set; }
     }
 }
