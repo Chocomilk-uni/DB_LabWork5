@@ -83,5 +83,32 @@ namespace ComputingEquipmentView
                 }
             }
         }
+
+        private void ButtonRefresh_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void ButtonFindByCity_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxCity.Text))
+            {
+                MessageBox.Show("Заполните поле \"Город\" ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                var list = supplierLogic.Read(new SupplierBindingModel
+                {
+                    Address = textBoxCity.Text
+                });
+                dataGridView.DataSource = list;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

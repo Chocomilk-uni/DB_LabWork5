@@ -35,7 +35,7 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
             using (var context = new ComputingEquipmentDatabase())
             {
                 return context.Software
-                    .Where(rec => rec.Name.Contains(model.Name))
+                    .Where(rec => rec.LicenseType == model.License_type)
                     .Select(rec => new SoftwareViewModel
                     {
                         Id = rec.Id,

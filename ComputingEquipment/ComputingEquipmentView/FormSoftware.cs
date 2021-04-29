@@ -82,5 +82,32 @@ namespace ComputingEquipmentView
                 }
             }
         }
+
+        private void ButtonRefresh_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void ButtonFindByLicenseType_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxLicense.Text))
+            {
+                MessageBox.Show("Заполните поле \"Тип лицензии\" ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                var list = softwareLogic.Read(new SoftwareBindingModel
+                {
+                    License_type = textBoxLicense.Text
+                });
+                dataGridView.DataSource = list;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

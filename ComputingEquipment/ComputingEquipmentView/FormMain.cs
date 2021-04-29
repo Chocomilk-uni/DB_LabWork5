@@ -115,5 +115,14 @@ namespace ComputingEquipmentView
                 }
             }
         }
+
+        private void ButtonEqByDates_Click(object sender, EventArgs e)
+        {
+            FormEquipmentByDates form = Container.Resolve<FormEquipmentByDates>();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
+        }
     }
 }

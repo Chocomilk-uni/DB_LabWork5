@@ -39,6 +39,7 @@ namespace ComputingEquipmentView
             this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonUpd = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonEqByDates = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -139,11 +140,22 @@ namespace ComputingEquipmentView
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.ButtonDel_Click);
             // 
+            // buttonEqByDates
+            // 
+            this.buttonEqByDates.Location = new System.Drawing.Point(1633, 373);
+            this.buttonEqByDates.Name = "buttonEqByDates";
+            this.buttonEqByDates.Size = new System.Drawing.Size(219, 64);
+            this.buttonEqByDates.TabIndex = 5;
+            this.buttonEqByDates.Text = "Поступления техники за период";
+            this.buttonEqByDates.UseVisualStyleBackColor = true;
+            this.buttonEqByDates.Click += new System.EventHandler(this.ButtonEqByDates_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1882, 553);
+            this.Controls.Add(this.buttonEqByDates);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonUpd);
             this.Controls.Add(this.buttonCreate);
@@ -173,5 +185,6 @@ namespace ComputingEquipmentView
         private System.Windows.Forms.Button buttonCreate;
         private System.Windows.Forms.Button buttonUpd;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button buttonEqByDates;
     }
 }

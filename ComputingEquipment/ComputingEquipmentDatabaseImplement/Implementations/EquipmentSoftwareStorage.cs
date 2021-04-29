@@ -45,7 +45,7 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
                     .Include(rec => rec.Software)
                     .Include(rec => rec.Equipment)
                     .ThenInclude(rec => rec.Type)
-                    .Where(rec => rec.SoftwareId == model.SoftwareId && rec.EquipmentId == model.EquipmentId)
+                    .Where(rec => !string.IsNullOrEmpty(model.EquipmentName) && rec.Equipment.Name.Contains(model.EquipmentName))
                     .Select(rec => new EquipmentSoftwareViewModel
                     {
                         Id = rec.Id,

@@ -40,6 +40,11 @@ namespace ComputingEquipmentView
             }
         }
 
+        private void ButtonRefresh_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
         private void ButtonCreate_Click(object sender, EventArgs e)
         {
             FormEmployee form = Container.Resolve<FormEmployee>();
@@ -79,6 +84,28 @@ namespace ComputingEquipmentView
                     }
                     LoadData();
                 }
+            }
+        }
+
+        private void ButtonFindByName_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxName.Text))
+            {
+                MessageBox.Show("Заполните поле \"ФИО\" ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                var list = employeeLogic.Read(new EmployeeBindingModel
+                {
+                    Name = textBoxName.Text
+                });
+                dataGridView.DataSource = list;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

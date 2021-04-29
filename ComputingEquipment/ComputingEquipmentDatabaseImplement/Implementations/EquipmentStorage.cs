@@ -50,7 +50,7 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
                     .Include(rec => rec.Employee)
                     .Include(rec => rec.Supplier)
                     .Include(rec => rec.Type)
-                    .Where(rec => rec.Name.Contains(model.Name))
+                    .Where(rec => model.DateFrom.HasValue && model.DateTo.HasValue && rec.ReceiptDate >= model.DateFrom.Value.Date && rec.ReceiptDate <= model.DateTo.Value.Date)
                     .Select(rec => new EquipmentViewModel
                     {
                         Id = rec.Id,

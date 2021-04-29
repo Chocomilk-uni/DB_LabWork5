@@ -37,7 +37,8 @@ namespace ComputingEquipmentDatabaseImplement.Implementations
             using (var context = new ComputingEquipmentDatabase())
             {
                 return context.Supplier
-                    .Where(rec => rec.OrganizationName.Contains(model.OrganizationName))
+                    .Where(rec => !string.IsNullOrEmpty(model.OrganizationName) && rec.OrganizationName.Contains(model.OrganizationName) 
+                    || !string.IsNullOrEmpty(model.Address) && rec.Address.Contains(model.Address))
                     .Select(rec => new SupplierViewModel
                     {
                         Id = rec.Id,

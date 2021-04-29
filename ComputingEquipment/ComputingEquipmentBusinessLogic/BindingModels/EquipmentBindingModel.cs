@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ComputingEquipmentBusinessLogic.BindingModels
 {
@@ -13,6 +12,8 @@ namespace ComputingEquipmentBusinessLogic.BindingModels
         public int TypeId { get; set; }
         public int? EmployeeId { get; set; }
         public int SupplierId { get; set; }
-        public Dictionary<int, string> EquipmentSoftware { get; set; }
+
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
     }
 }

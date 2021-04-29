@@ -36,7 +36,12 @@ namespace ComputingEquipmentView
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.buttonFindBName = new System.Windows.Forms.Button();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.groupBox = new System.Windows.Forms.GroupBox();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -57,7 +62,7 @@ namespace ComputingEquipmentView
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(403, 286);
+            this.buttonDelete.Location = new System.Drawing.Point(403, 178);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(219, 44);
             this.buttonDelete.TabIndex = 11;
@@ -67,7 +72,7 @@ namespace ComputingEquipmentView
             // 
             // buttonUpd
             // 
-            this.buttonUpd.Location = new System.Drawing.Point(403, 198);
+            this.buttonUpd.Location = new System.Drawing.Point(403, 103);
             this.buttonUpd.Name = "buttonUpd";
             this.buttonUpd.Size = new System.Drawing.Size(219, 44);
             this.buttonUpd.TabIndex = 10;
@@ -77,7 +82,7 @@ namespace ComputingEquipmentView
             // 
             // buttonCreate
             // 
-            this.buttonCreate.Location = new System.Drawing.Point(403, 109);
+            this.buttonCreate.Location = new System.Drawing.Point(403, 29);
             this.buttonCreate.Name = "buttonCreate";
             this.buttonCreate.Size = new System.Drawing.Size(219, 44);
             this.buttonCreate.TabIndex = 9;
@@ -112,11 +117,51 @@ namespace ComputingEquipmentView
             this.button3.Text = "Создать запись";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // buttonFindBName
+            // 
+            this.buttonFindBName.Location = new System.Drawing.Point(24, 84);
+            this.buttonFindBName.Name = "buttonFindBName";
+            this.buttonFindBName.Size = new System.Drawing.Size(165, 35);
+            this.buttonFindBName.TabIndex = 18;
+            this.buttonFindBName.Text = "Найти";
+            this.buttonFindBName.UseVisualStyleBackColor = true;
+            this.buttonFindBName.Click += new System.EventHandler(this.ButtonFindByName_Click);
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(6, 51);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(207, 27);
+            this.textBoxName.TabIndex = 17;
+            // 
+            // groupBox
+            // 
+            this.groupBox.Controls.Add(this.buttonFindBName);
+            this.groupBox.Controls.Add(this.textBoxName);
+            this.groupBox.Location = new System.Drawing.Point(403, 321);
+            this.groupBox.Name = "groupBox";
+            this.groupBox.Size = new System.Drawing.Size(219, 132);
+            this.groupBox.TabIndex = 25;
+            this.groupBox.TabStop = false;
+            this.groupBox.Text = "Поиск по наименованию:";
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Location = new System.Drawing.Point(403, 250);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(219, 44);
+            this.buttonRefresh.TabIndex = 26;
+            this.buttonRefresh.Text = "Обновить";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click);
+            // 
             // FormTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(652, 465);
+            this.Controls.Add(this.buttonRefresh);
+            this.Controls.Add(this.groupBox);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonUpd);
@@ -125,6 +170,8 @@ namespace ComputingEquipmentView
             this.Text = "Типы вычислительной техники";
             this.Load += new System.EventHandler(this.FormTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.groupBox.ResumeLayout(false);
+            this.groupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -138,5 +185,9 @@ namespace ComputingEquipmentView
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonFindBName;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.GroupBox groupBox;
+        private System.Windows.Forms.Button buttonRefresh;
     }
 }
